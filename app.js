@@ -7,15 +7,18 @@ const sequelize = require('./src/db/sequelize')
 
 
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000;
 
 app
 .use(favicon(__dirname + '/favicon.ico'))
-.use(morgan('dev'))
 .use(bodyParser.json())
 .use(cors())
 
 sequelize.initDb()
+
+app.get('/', (req,res)=>{
+  res.json('hello me')
+})
 
 //piont de terminaiseon
 require('./src/routes/findAllPokemons')(app)
@@ -31,7 +34,7 @@ app.use(({res})=>{
   res.status(404).json({message})
 })
 
-app.listen(port, () => console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
+app.listen(PORT, () => console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
 
 
 
