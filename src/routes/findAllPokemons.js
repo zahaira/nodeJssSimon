@@ -23,17 +23,14 @@ module.exports = (app) => {
         limit:5
       })
       .then(({count,rows}) => {
-        const message = `${count}  été récupérée.`
-        res.json({ message, data: rows })
+        res.json(rows)
       })
     }else{
     Pokemon.findAll({order:['name']})
       .then(pokemons => {
-        const message = 'La liste des pokémons a bien été récupérée.'
-        res.json({ message, data: pokemons })
+        res.json(pokemons )
       }).catch((error)=>{
-        const message = 'la liste nexist pas'
-        res.status(500).json({message,data:error})
+        res.status(500).json(error)
       })
     }
   })
