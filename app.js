@@ -7,7 +7,7 @@ const sequelize = require('./src/db/sequelize')
 
 
 const app = express()
-const PORT = process.env.PORT || 3000;
+const port = 3000;
 
 app
 .use(favicon(__dirname + '/favicon.ico'))
@@ -34,7 +34,7 @@ app.use(({res})=>{
   res.status(404).json({message})
 })
 
-app.listen(PORT, () => console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
+app.listen(port, () => console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
 
 
 
